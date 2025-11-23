@@ -1,0 +1,39 @@
+# Конфигурация Selenium-модуля
+
+# Браузер для запуска тестов
+# Возможные значения: chrome | firefox | edge
+browser: chrome
+driverVersion: null
+driverPath: null
+
+# Запуск в headless-режиме (true/false)
+headless: false
+
+# Режим окна браузера
+# Возможные значения: maximize | fullscreen | size:1920x1080
+window:
+  mode: maximize
+
+# Дополнительные аргументы для браузера
+# Можно указывать список, каждый аргумент отдельной строкой
+args:
+#  - --ignore-certificate-errors
+#  - --disable-popup-blocking
+#  - --remote-allow-origins=**
+  - --disable-extensions
+  - --disable-notifications
+  - --disable-infobars
+#  - --no-default-browser-check
+#  - --disable-first-run-ui
+#  - --disable-features=AutofillAssistant
+#  - --disable-features=TranslateUI
+#  - --disable-features=ChromeWhatsNewUI
+#  - --disable-features=ChromeTips
+#  - --no-first-run
+  - --disable-gpu
+  - --lang=ru
+#  - --incognito
+
+# Стратегия загрузки страниц
+# Возможные значения: normal | eager | none
+pageLoadStrategy: eager

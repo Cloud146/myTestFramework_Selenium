@@ -25,10 +25,15 @@ public final class LocatorReader {
             case XPATH -> By.xpath(value);
             case CSS -> By.cssSelector(value);
             case CLASS_NAME -> By.className(value);
-            case ACCESSIBILITY_ID ->
+            case TAG_NAME -> By.tagName(value);
+            case LINK_TEXT -> By.linkText(value);
+            case PARTIAL_LINK_TEXT -> By.partialLinkText(value);
+
+            // Мобильные/платформенные локаторы для других движков — не поддерживаются здесь
+            case ACCESSIBILITY_ID, ANDROID_UIAUTOMATOR, IOS_PREDICATE, IOS_CLASS_CHAIN ->
                 // Для WebDriver напрямую нет, но можно имитировать как XPATH или кастом
-                    By.xpath("//*[@content-desc='" + value + "']");
-            default -> throw new IllegalArgumentException("Unsupported locator type for Selenium: " + type);
+//                    By.xpath("//*[@content-desc='" + value + "']");
+                throw new IllegalArgumentException("Unsupported locator type for Selenium: " + type);
         };
     }
 }
