@@ -5,11 +5,6 @@ import driverAdapter.DriverAdapter;
 import driverAdapter.DriverAdapterFactory;
 import org.openqa.selenium.WebDriver;
 
-/**
- * Фабрика для создания {@link SeleniumDriverAdapter}.
- * Реализует SPI-контракт {@link DriverAdapterFactory} и регистрируется
- * через ServiceLoader (META-INF/services/driver.DriverAdapterFactory).
- */
 public class SeleniumDriverAdapterFactory implements DriverAdapterFactory {
 
     @Override
