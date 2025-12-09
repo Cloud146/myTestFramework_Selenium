@@ -5,6 +5,7 @@ import FileUtils.PageReader;
 import driverAdapter.adapter_api_contracts.element.ElementStateAdapter;
 import locator.Locator;
 import org.openqa.selenium.*;
+import utils.LocatorReader;
 
 public class SeleniumElementStateAdapter implements ElementStateAdapter {
 
@@ -49,16 +50,6 @@ public class SeleniumElementStateAdapter implements ElementStateAdapter {
         PageReader currentPage = pageHolder.get();
         Locator locator = currentPage.getLocator(elementName);
 
-        return switch (locator.getType()) {
-            case ID -> By.id(locator.getValue());
-            case XPATH -> By.xpath(locator.getValue());
-            case CSS -> By.cssSelector(locator.getValue());
-            case CLASS_NAME -> By.className(locator.getValue());
-            case NAME -> By.name(locator.getValue());
-            case TAG_NAME -> By.tagName(locator.getValue());
-            case LINK_TEXT -> By.linkText(locator.getValue());
-            case PARTIAL_LINK_TEXT -> By.partialLinkText(locator.getValue());
-            default -> throw new IllegalArgumentException("Unsupported locator type: " + locator.getType());
-        };
+        return LocatorReader.toBy(locator);
     }
 }
