@@ -15,5 +15,4 @@ public class SeleniumNavigationAdapter implements NavigationAdapter {
     public void openURL(String url) {
         driver.get(url);
     }
-
 }

@@ -1,25 +1,17 @@
 package capabilities;
 
+import browsers.BrowserConfig;
 import config.RuntimeReader;
 import driver.BrowserDriverFactory;
 import org.openqa.selenium.WebDriver;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
-/**
- * Диспетчер, выбирающий фабрику браузера через SPI.
- */
 public class SeleniumBrowserCapabilities {
 
     private final Map<String, BrowserDriverFactory> registry;
-    private final Map<String, Object> seleniumConfig;
 
     public SeleniumBrowserCapabilities() {
-        // Загружаем selenium_runtime.yaml
-        this.seleniumConfig = RuntimeReader.getModuleConfig("selenium_runtime");
-
-        // Регистрируем все фабрики через ServiceLoader
         registry = ServiceLoader.load(BrowserDriverFactory.class).stream()
                 .map(ServiceLoader.Provider::get)
                 .collect(Collectors.toMap(
@@ -29,15 +21,18 @@ public class SeleniumBrowserCapabilities {
     }
 
     public WebDriver createDriver() {
-        String browser = Optional.ofNullable((String) seleniumConfig.get("browser"))
+        String browserName = Optional.ofNullable(RuntimeReader.getString("browser"))
                 .orElse("chrome")
                 .trim()
                 .toLowerCase(Locale.ROOT);
 
-        BrowserDriverFactory factory = registry.get(browser);
+        BrowserDriverFactory factory = registry.get(browserName);
         if (factory == null) {
-            throw new IllegalStateException("No BrowserDriverFactory found for: " + browser);
+            throw new IllegalStateException("Для браузера '" + browserName + "' не найдена реализация (фабрика) в Selenium модуле.");
         }
-        return factory.createDriver(seleniumConfig);
+
+        BrowserConfig config = RuntimeReader.getBrowserConfig(browserName);
+
+        return factory.createDriver(config);
     }
 }

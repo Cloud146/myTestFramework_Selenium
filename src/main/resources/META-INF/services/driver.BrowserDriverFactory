@@ -1,1 +1,3 @@
 capabilities.ChromeBrowserDriverFactory
+capabilities.FirefoxBrowserDriverFactory
+capabilities.EdgeBrowserDriverFactory

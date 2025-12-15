@@ -3,16 +3,12 @@ package selenium_adapters.interaction;
 import driverAdapter.adapter_api_contracts.interaction.MouseAdapter;
 import FileUtils.PageReader;
 import locator.Locator;
-import logging.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.slf4j.Logger;
 import CurrentPageUtils.CurrentPageHolder;
-
 import java.util.Objects;
-
 import static utils.LocatorReader.toBy;
 
 public class SeleniumMouseAdapter implements MouseAdapter {

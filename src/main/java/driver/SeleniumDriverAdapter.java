@@ -8,12 +8,8 @@ import selenium_adapters.element.SeleniumElementStateAdapter;
 import selenium_adapters.element.SeleniumTextAdapter;
 import selenium_adapters.interaction.SeleniumMouseAdapter;
 import selenium_adapters.navigation.SeleniumNavigationAdapter;
-
 import java.util.Objects;
 
-/**
- * Реализация DriverAdapter для Selenium.
- */
 public class SeleniumDriverAdapter implements DriverAdapter {
 
     private final WebDriver driver;

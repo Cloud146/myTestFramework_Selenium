@@ -6,9 +6,7 @@ import locator.Locator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import CurrentPageUtils.CurrentPageHolder;
-
 import java.util.Objects;
-
 import static utils.LocatorReader.toBy;
 
 public class SeleniumTextAdapter implements TextAdapter {
